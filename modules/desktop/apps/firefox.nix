@@ -19,6 +19,17 @@
           darkreader
           youtube-shorts-block
         ];
+        search.engines = {
+          "Unduck" = {
+            urls = [{
+              template = "https://unduck.link";
+              params = [ { name = "q"; value = "{searchTerms}"; } ];
+            }];
+            definedAliases = ["@un"];
+          };
+        };
+        search.default = "Unduck";
+        search.force = true;
       };
     };
   };
