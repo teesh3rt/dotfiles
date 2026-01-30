@@ -7,7 +7,7 @@
     stylix = {
       enable = true;
       image = ./wallpaper.jpeg;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/blueish.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       polarity = "dark";
     };
   };
