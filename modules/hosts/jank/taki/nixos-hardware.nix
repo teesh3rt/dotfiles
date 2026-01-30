@@ -11,7 +11,6 @@
       intel-compute-runtime
       vpl-gpu-rt
     ];
-    hardware.graphics.extraPackages32 = [ pkgs.intel-media-driver-32 ];
     services.fstrim.enable = true;
     services.tlp.enable = (!config.services.power-profiles-daemon.enable);
 
