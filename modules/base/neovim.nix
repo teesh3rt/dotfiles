@@ -3,10 +3,16 @@
 {
   flake.modules.nixos.base = { pkgs, ... }: {
     environment.systemPackages = [ pkgs.neovim pkgs.statix ];
+
+    programs.neovim.enable = true;
+    programs.neovim.defaultEditor = true;
   };
 
   flake.modules.homeManager.base = {
     imports = [ inputs.lazyvim.homeManagerModules.default ];
+
+    programs.neovim.enable = true;
+    programs.neovim.defaultEditor = true;
 
     programs.lazyvim = {
       enable = true;
