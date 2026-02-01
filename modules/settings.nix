@@ -9,6 +9,16 @@ rec {
 
   flake.meta.git.name = "teesh3rt";
 
+  flake.meta.irc = {
+    server = {
+      name = "bouncer";
+      addr = "192.168.1.200";
+      port = 6667;
+      isBouncer = true;
+    };
+    password = "password";
+  };
+
   flake.meta.location = "/home/${flake.meta.user.name}/dotfiles";
   flake.meta.stateVersion = "25.11";
 }
