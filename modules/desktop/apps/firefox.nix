@@ -9,6 +9,7 @@
     system = pkgs.stdenv.hostPlatform.system;
     ff-addons = inputs.firefox-addons.packages.${system};
   in {
+    stylix.targets.firefox.profileNames = [ config.flake.meta.user.name ];
     programs.firefox = {
       enable = true;
       profiles.${config.flake.meta.user.name} = {
