@@ -19,6 +19,7 @@
           monthBeforeDay = false;
           name = "Tel Aviv, Israel";
         };
+        general.avatarImage = config.flake.meta.user.face;
         bar = {
           # density = "compact";
           position = "left";

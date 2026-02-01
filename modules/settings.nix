@@ -4,6 +4,7 @@ rec {
   flake.meta.user = {
     name = "teesh";
     email = "ilaylevy611@gmail.com";
+    face = ./assets/face.png;
   };
 
   flake.meta.git.name = "teesh3rt";
