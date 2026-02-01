@@ -20,8 +20,8 @@
           name = "Tel Aviv, Israel";
         };
         bar = {
-          density = "compact";
-          position = "bottom";
+          # density = "compact";
+          position = "left";
           widgets = {
             left = [
               { id = "ControlCenter"; useDistroLogo = true; }
