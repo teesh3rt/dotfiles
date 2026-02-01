@@ -31,6 +31,7 @@
       prefer-no-csd = true;
       input.keyboard.numlock = true;
       binds = {
+        "Mod+Shift+S".action.screenshot = [];
         "Mod+Shift+Q".action.spawn = noctalia "sessionMenu toggle";
         "Mod+N".action.spawn = noctalia "notifications toggleHistory";
         "Mod+Shift+N".action.spawn = noctalia "notifications clear";
