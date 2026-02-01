@@ -30,6 +30,10 @@
       environment."NIXOS_OZONE_WL" = "1";
       prefer-no-csd = true;
       input.keyboard.numlock = true;
+      layer-rules = [ {
+        matches = [ { namespace = "^noctalia-overview*"; } ];
+        place-within-backdrop = true;
+      } ];
       binds = {
         "Mod+Shift+S".action.screenshot = [];
         "Mod+Shift+Q".action.spawn = noctalia "sessionMenu toggle";

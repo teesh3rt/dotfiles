@@ -20,6 +20,7 @@
           name = "Tel Aviv, Israel";
         };
         general.avatarImage = config.flake.meta.user.face;
+        wallpaper.overviewEnabled = true;
         bar = {
           # density = "compact";
           position = "left";
