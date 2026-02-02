@@ -54,6 +54,9 @@
         "XF86AudioPrev".action.spawn-sh = "${playerctl} previous";
         "XF86AudioNext".action.spawn-sh = "${playerctl} next";
 
+        "XF86MonBrightnessUp".action.spawn = noctalia "brightness increase";
+        "XF86MonBrightnessDown".action.spawn = noctalia "brightness decrease";
+
         "Mod+Q".action.close-window = [];
 
         "Mod+Left".action.focus-column-left = [];
