@@ -7,6 +7,15 @@
     ];
   };
 
+  # taki is a laptop, therefore it has a battery,
+  # therefore noctalia should be able to detect it.
+  #
+  # we're using dendritic so its fine to modify configs in a file
+  # in fact, its even encouraged!
+  flake.modules.nixos.taki = {
+    services.upower.enable = true;
+  };
+
   flake.modules.homeManager.desktop = {
     imports = [
       inputs.noctalia.homeModules.default
