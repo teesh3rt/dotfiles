@@ -34,10 +34,10 @@
               { id = "Workspace"; hideUnoccupied = true; labelMode = "none"; }
             ];
             right = [
+              { id = "Tray"; }
               {
                 id = "Battery";
                 alwaysShowPercentage = true;
-                warningThreshold = 20;
               }
               {
                 id = "Clock";

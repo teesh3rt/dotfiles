@@ -76,6 +76,7 @@
         "Mod+Period".action.expel-window-from-column = [];
 
         "Mod+F".action.maximize-column = [];
+        "Mod+P".action.expand-column-to-available-width = [];
         "Mod+Shift+F".action.fullscreen-window = [];
 
         "Mod+C".action.center-column = [];
