@@ -3,6 +3,10 @@
 {
   flake.modules.nixos.desktop = { pkgs, ... }: {
     environment.systemPackages = [ pkgs.halloy ];
+
+    sops.secrets."irc/password" = {
+      owner = config.flake.meta.user.name;
+    };
   };
 
   flake.modules.homeManager.desktop = { lib, ... }: {
@@ -25,7 +29,7 @@
           sasl.plain =
             lib.mkIf (config.flake.meta.irc.server.isBouncer or false) {
               username = config.flake.meta.user.name;
-              password = config.flake.meta.irc.password; # dont commit this yet, please use sops-nix
+              password_file = "/run/secrets/irc/password";
             };
         };
 

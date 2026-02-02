@@ -1,0 +1,11 @@
+keys:
+  - &admin_teesh age1fdrtfvf3ywarc4sq7jjc5d6elas3fr73cfenkkyyj0ck6z9x2d0qlpn92h
+  - &host_taki   age1crm9ztzjuhg8yeudnqnrg9ljzc88x0tr79srjtyvt5vxnevpveaq9ggk7d
+  - &host_krembo age16yxzdjmlcwhkx3azmczuq9lvwyzsj6xvfpklp09aya2nwl7rfatsd7jcvs
+creation_rules:
+  - path_regex: secrets.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *admin_teesh
+      - *host_taki
+      - *host_krembo
