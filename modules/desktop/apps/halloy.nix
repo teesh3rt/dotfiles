@@ -13,7 +13,7 @@
           enabled = true;
         };
 
-        font.size = 20;
+        font.size = 30;
 
         servers.${config.flake.meta.irc.server.name} = {
           nickname = config.flake.meta.user.name;
