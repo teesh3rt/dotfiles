@@ -6,7 +6,10 @@
       inputs.copyparty.nixosModules.default
     ];
 
-    sops.secrets."copyparty/passwords/teesh" = {
+    sops.secrets."copyparty/passwords/ilay" = {
+      owner = config.services.copyparty.user;
+    };
+    sops.secrets."copyparty/passwords/ron" = {
       owner = config.services.copyparty.user;
     };
 
@@ -17,19 +20,33 @@
       settings = {
         i = "0.0.0.0";
         p = [ 3293 ];
+
+        e2d = true;
+        e2t = true;
+        shr = "/shr";
       };
       accounts = {
-        teesh.passwordFile = config.sops.secrets."copyparty/passwords/teesh".path;
+        ilay.passwordFile = config.sops.secrets."copyparty/passwords/ilay".path;
+        ron.passwordFile = config.sops.secrets."copyparty/passwords/ron".path;
       };
       volumes = {
         "/" = {
-          path = "/var/lib/copyparty/data"; # the default path
+          path = "/var/lib/copyparty/data";
           access = {
-            rwmda = [ "teesh" ];
+            rwmd = [ "ilay" ];
+            r = [ "ron" ];
           };
-          flags = {
-            e2d = true;
-            e2t = true;
+        };
+        "/ilay" = {
+          path = "/var/lib/copyparty/data/ilay";
+          access = {
+            rwmd = [ "ilay" ];
+          };
+        };
+        "/ron" = {
+          path = "/var/lib/copyparty/data/ron";
+          access = {
+            rwmd = [ "ron" ];
           };
         };
       };
