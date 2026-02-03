@@ -43,6 +43,7 @@
               { id = "Workspace"; hideUnoccupied = true; labelMode = "none"; }
             ];
             right = [
+              { id = "KeyboardLayout"; }
               { id = "Tray"; }
               {
                 id = "Battery";
