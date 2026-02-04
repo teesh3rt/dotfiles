@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.modules.nixos.server = { pkgs, config, ... }: {
+  flake.modules.nixos.server = { pkgs, lib, config, ... }: {
     imports = [
       inputs.copyparty.nixosModules.default
     ];
@@ -11,6 +11,19 @@
     };
     sops.secrets."copyparty/passwords/ron" = {
       owner = config.services.copyparty.user;
+    };
+    sops.secrets."cloudflare/copyparty" = {};
+    
+    services.cloudflared.tunnels = lib.mkIf config.services.cloudflared.enable {
+      "files" = {
+        credentialsFile = "/run/secrets/cloudflare/copyparty";
+        default = "http_status:404";
+        ingress = {
+          "files.teesh.dev" = {
+            service = "http://localhost:3293";
+          };
+        };
+      };
     };
 
     nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
