@@ -31,6 +31,8 @@ in
 
     nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
     environment.systemPackages = [ pkgs.copyparty ];
+    services.copyparty.settings.xff-hdr = if config.services.cloudflared.enable then "cf-connecting-ip" else null;
+    services.copyparty.settings.rproxy = if config.services.cloudflared.enable then 1 else null;
     services.copyparty = {
       enable = true;
       settings = {
