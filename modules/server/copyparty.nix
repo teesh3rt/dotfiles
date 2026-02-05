@@ -1,5 +1,8 @@
-{ inputs, ... }:
+{ inputs, ... }@inp:
 
+let
+  flk = inp.config.flake;
+in
 {
   flake.modules.nixos.server = { pkgs, lib, config, ... }: {
     imports = [
@@ -19,7 +22,7 @@
         credentialsFile = "/run/secrets/cloudflare/copyparty";
         default = "http_status:404";
         ingress = {
-          "files.teesh.dev" = {
+          "files.${flk.meta.web.domain.domain}" = {
             service = "http://localhost:3293";
           };
         };

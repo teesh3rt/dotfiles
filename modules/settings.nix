@@ -19,6 +19,11 @@ rec {
     password = "password";
   };
 
+  flake.meta.web.domain = {
+    has = true;
+    domain = "teesh.dev";
+  };
+
   flake.meta.location = "/home/${flake.meta.user.name}/dotfiles";
   flake.meta.stateVersion = "25.11";
 }
