@@ -21,6 +21,7 @@
     noctalia-shell = "${noctalia-pkg}/bin/noctalia-shell";
     ghostty = "${pkgs.ghostty}/bin/ghostty";
     playerctl = "${pkgs.playerctl}/bin/playerctl";
+    yazi = "${pkgs.yazi}/bin/yazi";
     noctalia = cmd: [ noctalia-shell "ipc" "call" ] ++ (pkgs.lib.splitString " " cmd);
     xws-unstable = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.xwayland-satellite-unstable;
   in {
@@ -92,6 +93,8 @@
         "Mod+Shift+Equal".action.set-window-height = "+10%";
 
         "Mod+O".action.toggle-overview = [];
+        
+        "Mod+E".action.spawn = [ ghostty "-e" yazi ];
       };
       spawn-at-startup = [
         { command = [ noctalia-shell ]; }
