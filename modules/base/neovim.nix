@@ -16,6 +16,8 @@
       vim.statusline.lualine.enable = true;
       vim.clipboard.enable = true;
       vim.clipboard.registers = "unnamedplus";
+      vim.presence.neocord.enable = true;
+      vim.filetree.neo-tree.enable = true;
 
       vim.git.neogit.enable = true;
       vim.keymaps = [
@@ -24,6 +26,12 @@
           mode = "n";
           silent = true;
           action = "<cmd>Neogit<cr>";
+        }
+        {
+          key = "<leader>fe";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Neotree toggle<cr>";
         }
       ];
 
