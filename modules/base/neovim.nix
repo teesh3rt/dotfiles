@@ -1,48 +1,44 @@
-{ inputs, ... }:
+{inputs, ...}: {
+  flake.modules.nixos.base = {
+    imports = [inputs.nvf.nixosModules.default];
 
-{
-  flake.modules.nixos.base = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.neovim pkgs.statix ];
+    programs.nvf.enable = true;
+    nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+    programs.nvf.settings = {
+      vim.viAlias = true;
+      vim.vimAlias = true;
 
-    programs.neovim.enable = true;
-    programs.neovim.defaultEditor = true;
-  };
+      vim.autocomplete.blink-cmp.enable = true;
+      vim.telescope.enable = true;
+      vim.utility.sleuth.enable = true;
+      vim.binds.whichKey.enable = true;
+      vim.ui.noice.enable = true;
+      vim.statusline.lualine.enable = true;
+      vim.clipboard.enable = true;
+      vim.clipboard.registers = "unnamedplus";
 
-  flake.modules.homeManager.base = {
-    imports = [ inputs.lazyvim.homeManagerModules.default ];
+      vim.git.neogit.enable = true;
+      vim.keymaps = [
+        {
+          key = "<leader>gg";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Neogit<cr>";
+        }
+      ];
 
-    programs.neovim.enable = true;
-    programs.neovim.defaultEditor = true;
+      vim.dashboard.alpha.enable = true;
 
-    programs.lazyvim = {
-      enable = true;
-      pluginSource = "nixpkgs";
-      plugins.catppuccin = ''
-        return { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } }
-      '';
-      plugins.neogit = ''
-        return { "NeogitOrg/neogit", opts = {}, keys = { { "<leader>gg", "<cmd>Neogit<cr>" } } }
-      '';
-      extras = {
-        lang.nix = {
-          enable = true;
-          installDependencies = true;
-        };
+      vim.lsp.enable = true;
+      vim.lsp.formatOnSave = true;
+      vim.languages = {
+        nix.enable = true;
+        nix.lsp.servers = ["nixd"];
+        rust.enable = true;
+        ts.enable = true;
 
-        lang.python = {
-          enable = true;
-          installDependencies = true;
-        };
-
-        # only reason we don't add `pkgs.claude-code` to base is because base is meant to be things for servers,
-        # we do need neovim on the server but we don't need a clanker on there too!
-        #
-        # plus, it can fail gracefully - if cc is not installed, it simply does nothing
-        ai.claudecode = {
-          enable = true;
-          installDependencies = true;
-          installRuntimeDependencies = true;
-        };
+        enableTreesitter = true;
+        enableFormat = true;
       };
     };
   };

@@ -4,6 +4,7 @@
   flake.modules.nixos.base = { pkgs, ... }: {
     programs.fish.enable = true;
     users.users.${config.flake.meta.user.name}.shell = pkgs.fish;
+    documentation.man.generateCaches = false;
   };
 
   flake.modules.homeManager.base = {
