@@ -6,7 +6,7 @@
     programs.neovim.defaultEditor = true;
   };
 
-  flake.modules.homeManager.base = {
+  flake.modules.homeManager.base = {pkgs, ...}: {
     imports = [inputs.lazyvim.homeManagerModules.default];
 
     programs.neovim.enable = true;
@@ -15,11 +15,44 @@
     programs.lazyvim = {
       enable = true;
       pluginSource = "nixpkgs";
+      extraPackages = with pkgs; [
+        nixd
+        alejandra
+        statix
+      ];
       plugins.catppuccin = ''
         return { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } }
       '';
       plugins.neogit = ''
         return { "NeogitOrg/neogit", opts = {}, keys = { { "<leader>gg", "<cmd>Neogit<cr>" } } }
+      '';
+      plugins.nix = ''
+        return {
+          {
+            "stevearc/conform.nvim",
+            opts = {
+              formatters_by_ft = {
+                nix = { "alejandra" },
+              },
+            },
+          },
+          {
+            "neovim/nvim-lspconfig",
+            opts = {
+              servers = {
+                nixd = {},
+              },
+            },
+          },
+          {
+            "mfussenegger/nvim-lint",
+            opts = {
+              linters_by_ft = {
+                nix = { "statix" },
+              },
+            },
+          }
+        }
       '';
       extras = {
         lang.nix = {
