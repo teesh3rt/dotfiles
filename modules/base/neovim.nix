@@ -65,6 +65,11 @@
           installDependencies = true;
         };
 
+        lang.yaml = {
+          enable = true;
+          installDependencies = true;
+        };
+
         # only reason we don't add `pkgs.claude-code` to base is because base is meant to be things for servers,
         # we do need neovim on the server but we don't need a clanker on there too!
         #
