@@ -15,8 +15,8 @@
     stylix.url = "github:nix-community/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
-    nvf = {
-      url = "github:notashelf/nvf";
+    lazyvim = {
+      url = "github:pfassina/lazyvim-nix";
     };
 
     firefox-addons = {
