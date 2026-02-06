@@ -1,9 +1,6 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) types;
-in
-{
+in {
   options.flake.meta = lib.mkOption {
     type = types.attrsOf types.anything;
     default = {};

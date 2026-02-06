@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   flake.modules.nixos.base = {
     programs.starship.enable = true;
   };

@@ -1,14 +1,17 @@
-{ ... }:
-
-{
-  perSystem = { self', pkgs, lib, ... }: {
+{...}: {
+  perSystem = {
+    self',
+    pkgs,
+    lib,
+    ...
+  }: {
     packages.notion-app = pkgs.writeShellScriptBin "notion-app" ''
       ${lib.getExe pkgs.chromium} --app=https://www.notion.so
     '';
 
     packages.notion-icon = pkgs.stdenv.mkDerivation {
       name = "notion-icon";
-      
+
       src = pkgs.fetchurl {
         url = "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg";
         hash = "sha256-G1KhhdgWbZM59cFt1ReJ7jD0mmW01Ac4KQtgQj4zEWA=";
@@ -28,7 +31,7 @@
       comment = "Productivity software";
       desktopName = "Notion";
       genericName = "Productivity software";
-      categories = [ "Office" ];
+      categories = ["Office"];
     };
 
     packages.notion = pkgs.symlinkJoin {

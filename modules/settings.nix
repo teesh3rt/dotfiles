@@ -1,6 +1,4 @@
-{ ... }:
-
-rec {
+{...}: rec {
   flake.meta.user = {
     name = "teesh";
     email = "ilaylevy611@gmail.com";

@@ -1,13 +1,10 @@
-{ ... }:
-
-{
-  flake.modules.nixos.desktop = { pkgs, ... }: let
-    discord = (pkgs.discord.override {
+{...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: let
+    discord = pkgs.discord.override {
       withOpenASAR = true;
       withVencord = true;
-    });
-  in
-  {
-    environment.systemPackages = [ discord ];
+    };
+  in {
+    environment.systemPackages = [discord];
   };
 }

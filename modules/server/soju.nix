@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   flake.modules.nixos.server = {
     services.soju.enable = true;
     services.soju.listen = [

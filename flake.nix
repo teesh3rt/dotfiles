@@ -41,7 +41,7 @@
     copyparty.url = "github:9001/copyparty";
   };
 
-  outputs = inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; }
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;}
     (inputs.import-tree ./modules);
 }

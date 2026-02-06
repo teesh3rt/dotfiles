@@ -1,7 +1,5 @@
-{ config, ... }:
-
-{
-  flake.modules.nixos.base = { pkgs, ... }: {
+{config, ...}: {
+  flake.modules.nixos.base = {pkgs, ...}: {
     programs.fish.enable = true;
     users.users.${config.flake.meta.user.name}.shell = pkgs.fish;
     documentation.man.generateCaches = false;

@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   flake.modules.nixos.krembo.imports = with config.flake.modules.nixos; [
     base
     server

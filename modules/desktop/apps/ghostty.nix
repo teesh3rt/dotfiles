@@ -1,8 +1,6 @@
-{ ... }:
-
-{
-  flake.modules.nixos.desktop = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.ghostty ]; 
+{...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.ghostty];
   };
 
   flake.modules.homeManager.desktop = {

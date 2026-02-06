@@ -1,10 +1,8 @@
-{ ... }:
-
-{
-  flake.modules.nixos.desktop = { pkgs, ... }: {
+{...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: {
     programs.yazi.enable = true;
 
-    environment.systemPackages = [ pkgs.mpv ];
+    environment.systemPackages = [pkgs.mpv];
   };
 
   flake.modules.homeManager.desktop = {

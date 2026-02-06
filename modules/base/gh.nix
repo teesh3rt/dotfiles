@@ -1,8 +1,6 @@
-{ ... }:
-
-{
-  flake.modules.nixos.base = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.gh ];
+{...}: {
+  flake.modules.nixos.base = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.gh];
   };
 
   flake.modules.homeManager.base = {

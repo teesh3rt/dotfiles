@@ -1,15 +1,13 @@
-{ config, ... }:
-
-{
-  flake.modules.nixos.desktop = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.halloy ];
+{config, ...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.halloy];
 
     sops.secrets."irc/password" = {
       owner = config.flake.meta.user.name;
     };
   };
 
-  flake.modules.homeManager.desktop = { lib, ... }: {
+  flake.modules.homeManager.desktop = {lib, ...}: {
     programs.halloy = {
       enable = true;
       settings = {
@@ -26,11 +24,10 @@
           use_tls = false;
           dangerously_accept_invalid_certs = true;
 
-          sasl.plain =
-            lib.mkIf (config.flake.meta.irc.server.isBouncer or false) {
-              username = config.flake.meta.user.name;
-              password_file = "/run/secrets/irc/password";
-            };
+          sasl.plain = lib.mkIf (config.flake.meta.irc.server.isBouncer or false) {
+            username = config.flake.meta.user.name;
+            password_file = "/run/secrets/irc/password";
+          };
         };
 
         buffer.chathistory = {

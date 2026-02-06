@@ -1,7 +1,5 @@
-{ ... }:
-
-{
-  perSystem = { pkgs, ... }: {
+{...}: {
+  perSystem = {pkgs, ...}: {
     packages.u2c = pkgs.stdenv.mkDerivation {
       name = "u2c";
       version = "2.19";
@@ -18,7 +16,7 @@
         chmod +x $out/bin/u2c
       '';
 
-      buildInputs = [ pkgs.python3 ];
+      buildInputs = [pkgs.python3];
 
       meta = {
         description = "A fast uploader for Copyparty";

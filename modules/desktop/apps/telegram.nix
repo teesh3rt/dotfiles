@@ -1,7 +1,5 @@
-{ ... }:
-
-{
-  flake.modules.nixos.desktop = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.telegram-desktop ];
+{...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.telegram-desktop];
   };
 }

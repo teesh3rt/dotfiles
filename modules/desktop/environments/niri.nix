@@ -1,7 +1,5 @@
-{ inputs, ... }:
-
-{
-  flake.modules.nixos.desktop = { pkgs, ... }: let
+{inputs, ...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: let
     niri-unstable = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
   in {
     imports = [
@@ -16,13 +14,17 @@
     ];
   };
 
-  flake.modules.homeManager.desktop = { pkgs, lib, ... }: let
+  flake.modules.homeManager.desktop = {
+    pkgs,
+    lib,
+    ...
+  }: let
     noctalia-pkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
     noctalia-shell = "${noctalia-pkg}/bin/noctalia-shell";
     ghostty = "${pkgs.ghostty}/bin/ghostty";
     playerctl = "${pkgs.playerctl}/bin/playerctl";
     yazi = "${pkgs.yazi}/bin/yazi";
-    noctalia = cmd: [ noctalia-shell "ipc" "call" ] ++ (pkgs.lib.splitString " " cmd);
+    noctalia = cmd: [noctalia-shell "ipc" "call"] ++ (pkgs.lib.splitString " " cmd);
     xws-unstable = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.xwayland-satellite-unstable;
   in {
     programs.niri.settings.xwayland-satellite.enable = true;
@@ -31,10 +33,12 @@
       environment."NIXOS_OZONE_WL" = "1";
       prefer-no-csd = true;
       input.keyboard.numlock = true;
-      layer-rules = [ {
-        matches = [ { namespace = "^noctalia-overview*"; } ];
-        place-within-backdrop = true;
-      } ];
+      layer-rules = [
+        {
+          matches = [{namespace = "^noctalia-overview*";}];
+          place-within-backdrop = true;
+        }
+      ];
       binds = {
         "Mod+Shift+S".action.screenshot = [];
         "Mod+Shift+Q".action.spawn = noctalia "sessionMenu toggle";
@@ -93,11 +97,11 @@
         "Mod+Shift+Equal".action.set-window-height = "+10%";
 
         "Mod+O".action.toggle-overview = [];
-        
-        "Mod+E".action.spawn = [ ghostty "-e" yazi ];
+
+        "Mod+E".action.spawn = [ghostty "-e" yazi];
       };
       spawn-at-startup = [
-        { command = [ noctalia-shell ]; }
+        {command = [noctalia-shell];}
       ];
       hotkey-overlay.skip-at-startup = true;
     };

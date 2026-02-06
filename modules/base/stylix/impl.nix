@@ -1,9 +1,11 @@
-{ inputs, lib, ... }:
-
 {
-  flake.modules.nixos.base = { pkgs, ... }: {
-    imports = [ inputs.stylix.nixosModules.stylix ];
-    
+  inputs,
+  lib,
+  ...
+}: {
+  flake.modules.nixos.base = {pkgs, ...}: {
+    imports = [inputs.stylix.nixosModules.stylix];
+
     stylix = {
       enable = true;
       image = ./wallpaper.jpeg;

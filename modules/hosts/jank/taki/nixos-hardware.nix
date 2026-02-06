@@ -1,10 +1,12 @@
-{ ... }:
+{...}: {
+  flake.modules.nixos.taki = {
+    pkgs,
+    config,
+    ...
+  }: {
+    hardware.firmware = [pkgs.sof-firmware];
 
-{
-  flake.modules.nixos.taki = { pkgs, config, ... }: {
-    hardware.firmware = [ pkgs.sof-firmware ];
-
-    hardware.bluetooth.enable = true;    
+    hardware.bluetooth.enable = true;
 
     hardware.graphics.extraPackages = with pkgs; [
       intel-media-driver
@@ -12,7 +14,7 @@
       vpl-gpu-rt
     ];
     services.fstrim.enable = true;
-    services.tlp.enable = (!config.services.power-profiles-daemon.enable);
+    services.tlp.enable = !config.services.power-profiles-daemon.enable;
 
     boot = {
       # Workaround: Out of the box, resuming from hibernation will break sounds.
@@ -41,7 +43,7 @@
     };
 
     environment.variables = {
-      INTEL_DEBUG="no32";
+      INTEL_DEBUG = "no32";
     };
 
     security.tpm2.enable = true;

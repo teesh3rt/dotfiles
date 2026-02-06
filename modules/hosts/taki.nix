@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   flake.modules.nixos.taki.imports = with config.flake.modules.nixos; [
     base
     desktop

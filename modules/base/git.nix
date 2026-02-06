@@ -1,10 +1,7 @@
-{ config, ... }:
-
-let
+{config, ...}: let
   userName = config.flake.meta.git.name or config.flake.meta.user.name or "";
   userEmail = config.flake.meta.git.email or config.flake.meta.user.email or "";
-in
-{
+in {
   flake.modules.nixos.base = {
     programs.git.enable = true;
   };

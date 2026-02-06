@@ -1,10 +1,12 @@
-{ inputs, ... }@inp:
-
-let
+{inputs, ...} @ inp: let
   flk = inp.config.flake;
-in
-{
-  flake.modules.nixos.server = { pkgs, lib, config, ... }: {
+in {
+  flake.modules.nixos.server = {
+    pkgs,
+    lib,
+    config,
+    ...
+  }: {
     imports = [
       inputs.copyparty.nixosModules.default
     ];
@@ -16,7 +18,7 @@ in
       owner = config.services.copyparty.user;
     };
     sops.secrets."cloudflare/copyparty" = {};
-    
+
     services.cloudflared.tunnels = lib.mkIf config.services.cloudflared.enable {
       "files" = {
         credentialsFile = "/run/secrets/cloudflare/copyparty";
@@ -29,15 +31,21 @@ in
       };
     };
 
-    nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
-    environment.systemPackages = [ pkgs.copyparty ];
-    services.copyparty.settings.xff-hdr = if config.services.cloudflared.enable then "cf-connecting-ip" else null;
-    services.copyparty.settings.rproxy = if config.services.cloudflared.enable then 1 else null;
+    nixpkgs.overlays = [inputs.copyparty.overlays.default];
+    environment.systemPackages = [pkgs.copyparty];
+    services.copyparty.settings.xff-hdr =
+      if config.services.cloudflared.enable
+      then "cf-connecting-ip"
+      else null;
+    services.copyparty.settings.rproxy =
+      if config.services.cloudflared.enable
+      then 1
+      else null;
     services.copyparty = {
       enable = true;
       settings = {
         i = "0.0.0.0";
-        p = [ 3293 ];
+        p = [3293];
 
         e2d = true;
         e2t = true;
@@ -51,20 +59,20 @@ in
         "/" = {
           path = "/var/lib/copyparty/data";
           access = {
-            rwmd = [ "ilay" ];
-            r = [ "ron" ];
+            rwmd = ["ilay"];
+            r = ["ron"];
           };
         };
         "/ilay" = {
           path = "/var/lib/copyparty/data/ilay";
           access = {
-            rwmd = [ "ilay" ];
+            rwmd = ["ilay"];
           };
         };
         "/ron" = {
           path = "/var/lib/copyparty/data/ron";
           access = {
-            rwmd = [ "ron" ];
+            rwmd = ["ron"];
           };
         };
       };

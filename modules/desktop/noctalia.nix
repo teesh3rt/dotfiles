@@ -1,7 +1,9 @@
-{ config, inputs, ... }:
-
 {
-  flake.modules.nixos.desktop = { pkgs, ... }: {
+  config,
+  inputs,
+  ...
+}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: {
     environment.systemPackages = [
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
@@ -35,16 +37,23 @@
           position = "left";
           widgets = {
             left = [
-              { id = "ControlCenter"; useDistroLogo = true; }
-              { id = "Network"; }
-              { id = "Bluetooth"; }
+              {
+                id = "ControlCenter";
+                useDistroLogo = true;
+              }
+              {id = "Network";}
+              {id = "Bluetooth";}
             ];
             center = [
-              { id = "Workspace"; hideUnoccupied = true; labelMode = "none"; }
+              {
+                id = "Workspace";
+                hideUnoccupied = true;
+                labelMode = "none";
+              }
             ];
             right = [
-              { id = "KeyboardLayout"; }
-              { id = "Tray"; }
+              {id = "KeyboardLayout";}
+              {id = "Tray";}
               {
                 id = "Battery";
                 alwaysShowPercentage = true;
