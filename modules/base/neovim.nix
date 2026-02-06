@@ -36,6 +36,7 @@
         nix.lsp.servers = ["nixd"];
         rust.enable = true;
         ts.enable = true;
+        yaml.enable = true;
 
         enableTreesitter = true;
         enableFormat = true;
